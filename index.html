@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ayushman Chaudhuri — Computing @ NUS</title>
+<meta name="description" content="Ayushman Chaudhuri — Year 1 Computer Science student at the National University of Singapore. Building software, breaking things, shipping projects.">
+<meta name="theme-color" content="#08080A">
+
+<meta property="og:title" content="Ayushman Chaudhuri — Computing @ NUS">
+<meta property="og:description" content="Year 1 Computer Science student at NUS. Building software, breaking things, shipping projects.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/img/ayushman-md.jpg">
+<link rel="preload" as="image" href="assets/img/ayushman-cutout.webp" type="image/webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%2308080A%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%276%27 fill=%27%23FF8000%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-loading">
+
+<!-- ========== PRELOADER ========== -->
+<div class="loader" id="loader" aria-hidden="true">
+  <canvas class="loader__canvas" id="loaderCanvas"></canvas>
+  <div class="loader__inner">
+    <div class="loader__label">
+      <span>NATIONAL UNIVERSITY OF SINGAPORE</span>
+      <span>SCHOOL OF COMPUTING</span>
+    </div>
+    <div class="lights" id="lights">
+      <div class="light"><i></i><i></i></div>
+      <div class="light"><i></i><i></i></div>
+      <div class="light"><i></i><i></i></div>
+      <div class="light"><i></i><i></i></div>
+      <div class="light"><i></i><i></i></div>
+    </div>
+    <div class="loader__name" id="loaderName">AYUSHMAN</div>
+    <div class="loader__foot">
+      <span id="loaderStatus">WARMING UP TYRES</span>
+      <span><b id="loaderCount">000</b>%</span>
+    </div>
+  </div>
+  <div class="loader__go" id="loaderGo">LIGHTS OUT</div>
+  <div class="loader__curtain"></div>
+</div>
+
+<!-- ========== OVERLAYS ========== -->
+<div class="grain" id="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__dot"></div>
+  <div class="cursor__ring"><span class="cursor__text"></span></div>
+</div>
+<div class="scanlines" aria-hidden="true"></div>
+
+<!-- ========== NAV ========== -->
+<header class="nav" id="nav">
+  <a href="#home" class="nav__logo" data-cursor="hover">
+    <span class="nav__logo-mark">AC</span>
+    <span class="nav__logo-pulse"></span>
+  </a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#about" data-cursor="hover"><i>01</i> About</a>
+    <a href="#skills" data-cursor="hover"><i>02</i> Skills</a>
+    <a href="#work" data-cursor="hover"><i>03</i> Work</a>
+    <a href="#beyond" data-cursor="hover"><i>04</i> Beyond</a>
+  </nav>
+  <a href="#contact" class="nav__cta magnetic" data-cursor="hover">
+    <span class="nav__cta-in">Let's talk</span>
+  </a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu__bg"></div>
+  <div class="menu__inner">
+    <ul class="menu__list">
+      <li><a href="#home" data-n="00">Home</a></li>
+      <li><a href="#about" data-n="01">About</a></li>
+      <li><a href="#skills" data-n="02">Skills</a></li>
+      <li><a href="#work" data-n="03">Work</a></li>
+      <li><a href="#beyond" data-n="04">Beyond</a></li>
+      <li><a href="#contact" data-n="05">Contact</a></li>
+    </ul>
+    <div class="menu__meta">
+      <p>Singapore · UTC+8</p>
+      <p><a href="mailto:ayushman.chaudhuri@gmail.com">ayushman.chaudhuri@gmail.com</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SCROLL WRAPPER ========== -->
+<main id="smooth" class="smooth">
+<div id="smoothInner">
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="home">
+  <canvas class="hero__gl" id="heroGL" aria-hidden="true"></canvas>
+  <div class="hero__glow" id="heroGlow" aria-hidden="true"></div>
+  <div class="hero__streaks" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+
+  <div class="hero__number" data-depth="0.4" aria-hidden="true">01</div>
+
+  <div class="hero__back" data-depth="0.9">
+    <h1 class="hero__name" aria-label="Ayushman Chaudhuri">
+      <span class="hero__name-row" data-split="chars">AYUSHMAN</span>
+    </h1>
+  </div>
+
+  <div class="hero__driver" data-depth="-0.35">
+    <img src="assets/img/ayushman-cutout.webp"
+         srcset="assets/img/ayushman-cutout-sm.webp 605w, assets/img/ayushman-cutout.webp 1008w"
+         sizes="(max-width:760px) 92vw, 46vw"
+         alt="Ayushman Chaudhuri" id="heroImg" width="1008" height="1500" fetchpriority="high">
+  </div>
+
+  <div class="hero__front" data-depth="-0.7" aria-hidden="true">
+    <span class="hero__sign">Ayushman</span>
+  </div>
+
+  <div class="hero__surname" data-depth="0.25" aria-hidden="true">
+    <span data-split="chars">CHAUDHURI</span>
+  </div>
+
+  <aside class="hud hud--l">
+    <div class="hud__row reveal"><em>POS</em><b>CS · Y1</b></div>
+    <div class="hud__row reveal"><em>TEAM</em><b>NUS Computing</b></div>
+    <div class="hud__row reveal"><em>LOCAL</em><b id="clock">--:--:--</b></div>
+    <div class="hud__row reveal">
+      <em>SPEED</em><b><span id="speed">000</span> <small>KM/H</small></b>
+      <canvas class="hud__spark" id="spark" width="160" height="30"></canvas>
+    </div>
+  </aside>
+
+  <aside class="hud hud--r">
+    <div class="hud__row reveal"><em>STATUS</em><b class="hud__live"><i></i>Open to internships</b></div>
+    <div class="hud__row reveal"><em>SECTOR</em><b>Software · Systems · Web</b></div>
+    <a href="#contact" class="hud__cta reveal magnetic" data-cursor="hover"><span>Get in touch</span><i>↗</i></a>
+  </aside>
+
+  <a href="#about" class="hero__scroll" data-cursor="hover">
+    <span class="hero__scroll-txt">SCROLL TO LAUNCH</span>
+    <span class="hero__scroll-line"></span>
+  </a>
+
+  <div class="hero__kerb" aria-hidden="true"></div>
+</section>
+
+<!-- ========== TICKER ========== -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track" id="ticker">
+    <span>SOFTWARE ENGINEER <b>✳</b> PROBLEM SOLVER <b>✳</b> NUS COMPUTING '29 <b>✳</b> ALWAYS SHIPPING <b>✳</b> </span>
+    <span>SOFTWARE ENGINEER <b>✳</b> PROBLEM SOLVER <b>✳</b> NUS COMPUTING '29 <b>✳</b> ALWAYS SHIPPING <b>✳</b> </span>
+  </div>
+</div>
+
+<!-- ========== ABOUT ========== -->
+<section class="about" id="about">
+  <div class="sec-head">
+    <em class="sec-num">01 / ABOUT</em>
+    <span class="sec-rule"></span>
+  </div>
+
+  <div class="about__grid">
+    <div class="about__sticky">
+      <dl class="spec">
+        <div class="spec__row reveal"><dt>Name</dt><dd>Ayushman Chaudhuri</dd></div>
+        <div class="spec__row reveal"><dt>Base</dt><dd>Singapore</dd></div>
+        <div class="spec__row reveal"><dt>Team</dt><dd>NUS School of Computing</dd></div>
+        <div class="spec__row reveal"><dt>Season</dt><dd>Year 1 · Rookie</dd></div>
+        <div class="spec__row reveal"><dt>Specialty</dt><dd>Software engineering</dd></div>
+        <div class="spec__row reveal"><dt>Status</dt><dd class="spec__live"><i></i>Open to internships</dd></div>
+      </dl>
+    </div>
+
+    <div class="about__body">
+      <p class="about__lead" data-split="words">
+        I'm a first-year Computer Science student at NUS who'd rather build the thing than read about it.
+      </p>
+      <p class="about__text reveal">
+        Somewhere between a 3am debugging session and a lecture on discrete maths, I found the part of
+        computing I actually love: taking an idea that only exists in my head and forcing it to run on
+        real hardware, for real people. Systems, interfaces, algorithms — whatever the problem needs.
+      </p>
+      <p class="about__text reveal">
+        Right now I'm deep in data structures, low-level C, and the kind of side projects that start as a
+        joke at 1am and end up on GitHub by morning. I care about craft — code that's readable, products
+        that feel considered, details nobody asked for.
+      </p>
+
+      <div class="stats">
+        <div class="stat reveal">
+          <span class="stat__num" data-count="2029">0</span>
+          <span class="stat__lab">Expected<br>graduation</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__num" data-count="12" data-suffix="+">0</span>
+          <span class="stat__lab">Projects<br>shipped</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__num" data-count="6" data-suffix="">0</span>
+          <span class="stat__lab">Languages<br>in the stack</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__num" data-count="3" data-suffix="am">0</span>
+          <span class="stat__lab">Peak coding<br>hour</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SKILLS ========== -->
+<section class="skills" id="skills">
+  <div class="sec-head">
+    <em class="sec-num">02 / TOOLKIT</em>
+    <span class="sec-rule"></span>
+  </div>
+
+  <h2 class="mega" data-split="chars">THE STACK</h2>
+
+  <div class="skills__grid">
+    <article class="skill" data-cursor="hover">
+      <span class="skill__i">01</span>
+      <h3>Languages</h3>
+      <p>Python, Java, C, JavaScript, SQL, and a healthy respect for pointers.</p>
+      <ul class="tags"><li>Python</li><li>Java</li><li>C</li><li>JavaScript</li><li>SQL</li></ul>
+      <div class="skill__fill"></div>
+    </article>
+
+    <article class="skill" data-cursor="hover">
+      <span class="skill__i">02</span>
+      <h3>Web &amp; Product</h3>
+      <p>Front to back — interfaces that feel fast and APIs that don't fall over.</p>
+      <ul class="tags"><li>React</li><li>Node</li><li>HTML/CSS</li><li>REST</li><li>Figma</li></ul>
+      <div class="skill__fill"></div>
+    </article>
+
+    <article class="skill" data-cursor="hover">
+      <span class="skill__i">03</span>
+      <h3>CS Fundamentals</h3>
+      <p>Data structures, algorithms, OS concepts — the stuff that makes the rest work.</p>
+      <ul class="tags"><li>DSA</li><li>OOP</li><li>Systems</li><li>Discrete Math</li></ul>
+      <div class="skill__fill"></div>
+    </article>
+
+    <article class="skill" data-cursor="hover">
+      <span class="skill__i">04</span>
+      <h3>Tooling</h3>
+      <p>Git worth reading, Linux worth living in, and CI that catches me before users do.</p>
+      <ul class="tags"><li>Git</li><li>Linux</li><li>Docker</li><li>VS Code</li></ul>
+      <div class="skill__fill"></div>
+    </article>
+
+    <article class="skill" data-cursor="hover">
+      <span class="skill__i">05</span>
+      <h3>Data &amp; AI</h3>
+      <p>Pandas, NumPy, and increasingly more time spent talking to language models.</p>
+      <ul class="tags"><li>NumPy</li><li>Pandas</li><li>LLM APIs</li><li>Prompting</li></ul>
+      <div class="skill__fill"></div>
+    </article>
+
+    <article class="skill" data-cursor="hover">
+      <span class="skill__i">06</span>
+      <h3>Human Skills</h3>
+      <p>Explaining hard things simply, shipping in teams, and writing docs people read.</p>
+      <ul class="tags"><li>Teamwork</li><li>Writing</li><li>Public speaking</li></ul>
+      <div class="skill__fill"></div>
+    </article>
+  </div>
+
+  <div class="marquee marquee--alt" aria-hidden="true">
+    <div class="marquee__track">
+      <span>PYTHON · JAVA · C · REACT · NODE · GIT · LINUX · SQL · DOCKER · NUMPY · ALGORITHMS · </span>
+      <span>PYTHON · JAVA · C · REACT · NODE · GIT · LINUX · SQL · DOCKER · NUMPY · ALGORITHMS · </span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WORK (horizontal) ========== -->
+<section class="work" id="work">
+  <div class="work__pin" id="workPin">
+    <div class="work__track" id="workTrack">
+
+      <div class="work__intro">
+        <em class="sec-num">03 / WORK</em>
+        <h2 class="work__intro-title">SELECTED<br>PROJECTS</h2>
+        <p>Things I built because I wanted them to exist. Scroll sideways.</p>
+        <span class="work__arrow">→</span>
+      </div>
+
+      <article class="proj" data-cursor="view">
+        <span class="proj__n">01</span>
+        <div class="proj__body">
+          <h3>Orbital</h3>
+          <p class="proj__type">Full-stack web app</p>
+          <p class="proj__desc">A scheduling tool for student project teams that turns everyone's messy timetable into the one hour a week you're all actually free.</p>
+          <ul class="tags"><li>React</li><li>Node</li><li>PostgreSQL</li></ul>
+        </div>
+        <div class="proj__glow"></div>
+      </article>
+
+      <article class="proj" data-cursor="view">
+        <span class="proj__n">02</span>
+        <div class="proj__body">
+          <h3>Pathfinder</h3>
+          <p class="proj__type">Algorithm visualiser</p>
+          <p class="proj__desc">Watch A*, Dijkstra and BFS race each other across a maze you draw yourself. Built to make my own DSA revision less painful.</p>
+          <ul class="tags"><li>JavaScript</li><li>Canvas</li><li>Algorithms</li></ul>
+        </div>
+        <div class="proj__glow"></div>
+      </article>
+
+      <article class="proj" data-cursor="view">
+        <span class="proj__n">03</span>
+        <div class="proj__body">
+          <h3>Mess Hall</h3>
+          <p class="proj__type">Data + scraping</p>
+          <p class="proj__desc">Scrapes campus canteen menus, ranks them by what students actually rate, and tells you where to eat before the queue forms.</p>
+          <ul class="tags"><li>Python</li><li>BeautifulSoup</li><li>Pandas</li></ul>
+        </div>
+        <div class="proj__glow"></div>
+      </article>
+
+      <article class="proj" data-cursor="view">
+        <span class="proj__n">04</span>
+        <div class="proj__body">
+          <h3>Shellshock</h3>
+          <p class="proj__type">Systems / C</p>
+          <p class="proj__desc">A tiny UNIX shell written from scratch — piping, redirection, job control. Mostly an excuse to finally understand fork() and exec().</p>
+          <ul class="tags"><li>C</li><li>POSIX</li><li>Systems</li></ul>
+        </div>
+        <div class="proj__glow"></div>
+      </article>
+
+      <article class="proj proj--cta" data-cursor="hover">
+        <div class="proj__body">
+          <h3>More on<br>GitHub</h3>
+          <p class="proj__desc">The half-finished experiments live there too.</p>
+          <a class="btn magnetic" href="https://github.com" target="_blank" rel="noopener">
+            <span>Open GitHub</span><i>↗</i>
+          </a>
+        </div>
+      </article>
+
+    </div>
+    <div class="work__prog"><i id="workProg"></i></div>
+  </div>
+</section>
+
+<!-- ========== BEYOND ========== -->
+<section class="beyond" id="beyond">
+  <div class="sec-head">
+    <em class="sec-num">04 / BEYOND THE SCREEN</em>
+    <span class="sec-rule"></span>
+  </div>
+
+  <h2 class="mega mega--stroke" data-split="chars">OFF DUTY</h2>
+
+  <ul class="beyond__list" id="beyondList">
+    <li data-cursor="hover">
+      <span class="beyond__n">A</span>
+      <h3>Public Speaking</h3>
+      <p>Give me a mic and a deadline and I'll find something worth saying.</p>
+    </li>
+    <li data-cursor="hover">
+      <span class="beyond__n">B</span>
+      <h3>Writing</h3>
+      <p>Essays, build logs, and the occasional overlong explanation of a bug.</p>
+    </li>
+    <li data-cursor="hover">
+      <span class="beyond__n">C</span>
+      <h3>Chess &amp; Puzzles</h3>
+      <p>Same dopamine as debugging, fewer stack traces.</p>
+    </li>
+    <li data-cursor="hover">
+      <span class="beyond__n">D</span>
+      <h3>Hackathons</h3>
+      <p>48 hours, too much caffeine, one demo that works on the third try.</p>
+    </li>
+    <li data-cursor="hover">
+      <span class="beyond__n">E</span>
+      <h3>Exploring Singapore</h3>
+      <p>Hawker centres ranked by a spreadsheet I refuse to show anyone.</p>
+    </li>
+  </ul>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section class="contact" id="contact">
+  <canvas class="contact__gl" id="contactGL" aria-hidden="true"></canvas>
+
+  <div class="contact__inner">
+    <div class="sec-head">
+      <em class="sec-num">05 / CONTACT</em>
+      <span class="sec-rule"></span>
+    </div>
+
+    <h2 class="contact__title">
+      <span class="line" data-split="chars">LET'S BUILD</span>
+      <span class="line" data-split="chars">SOMETHING</span>
+    </h2>
+
+    <div class="contact__grid">
+      <div class="contact__side">
+        <p class="contact__blurb">
+          Internship, a project that needs a stubborn first-year, or just want to argue about
+          tabs vs spaces — my inbox is open.
+        </p>
+
+        <button class="mailcopy magnetic" id="mailCopy" data-mail="ayushman.chaudhuri@gmail.com" data-cursor="hover">
+          <span class="mailcopy__txt">ayushman.chaudhuri@gmail.com</span>
+          <span class="mailcopy__hint">Click to copy</span>
+        </button>
+
+        <ul class="socials">
+          <li><a href="https://github.com" target="_blank" rel="noopener" data-cursor="hover"><span>GitHub</span><i>↗</i></a></li>
+          <li><a href="https://linkedin.com" target="_blank" rel="noopener" data-cursor="hover"><span>LinkedIn</span><i>↗</i></a></li>
+          <li><a href="mailto:ayushman.chaudhuri@gmail.com" data-cursor="hover"><span>Email</span><i>↗</i></a></li>
+        </ul>
+      </div>
+
+      <form class="form" id="contactForm" novalidate>
+        <div class="field">
+          <input type="text" id="fName" name="name" required placeholder=" " autocomplete="name">
+          <label for="fName">Your name</label>
+          <span class="field__line"></span>
+        </div>
+        <div class="field">
+          <input type="email" id="fEmail" name="email" required placeholder=" " autocomplete="email">
+          <label for="fEmail">Your email</label>
+          <span class="field__line"></span>
+        </div>
+        <div class="field">
+          <textarea id="fMsg" name="message" rows="4" required placeholder=" "></textarea>
+          <label for="fMsg">What's on your mind?</label>
+          <span class="field__line"></span>
+        </div>
+        <button type="submit" class="btn btn--big magnetic" data-cursor="hover">
+          <span>Send it</span><i>↗</i>
+        </button>
+        <p class="form__note" id="formNote" role="status"></p>
+      </form>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span>© <span id="year">2026</span> Ayushman Chaudhuri</span>
+    <span>Built in Singapore · <a href="#home" data-cursor="hover">Back to top ↑</a></span>
+  </footer>
+</section>
+
+</div>
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
