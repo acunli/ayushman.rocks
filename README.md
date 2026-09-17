@@ -22,3 +22,9 @@ To receive messages directly: create a free form at formspree.io, then set
 
 ## Deploy
 Drag the `site` folder onto app.netlify.com/drop, or push it to GitHub and enable GitHub Pages / Vercel.
+
+## GitHub contributions (Pit Wall section)
+`data/contributions.json` is refreshed daily by `.github/workflows/contributions.yml`,
+which runs `scripts/fetch-contributions.mjs` using the repo secret `CONTRIB_TOKEN`
+(a fine-grained personal access token). To refresh manually: Actions tab →
+"Update GitHub contributions" → Run workflow.

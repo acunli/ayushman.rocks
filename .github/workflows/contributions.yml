@@ -1,0 +1,41 @@
+name: Update GitHub contributions
+
+on:
+  schedule:
+    - cron: "30 16 * * *" # 00:30 Singapore time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: contributions
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch last 30 days of contributions
+        env:
+          GITHUB_TOKEN: ${{ secrets.CONTRIB_TOKEN }}
+          GH_LOGIN: acunli
+        run: node scripts/fetch-contributions.mjs
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- data/contributions.json; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/contributions.json
+          git commit -m "chore: update contributions data"
+          git push

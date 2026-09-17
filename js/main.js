@@ -250,13 +250,13 @@
   $$('[data-split]:not(.hero [data-split]), .reveal:not(.hero .reveal), [data-count]').forEach(el => io.observe(el));
 
   function countUp(el) {
-    const end = +el.dataset.count, suf = el.dataset.suffix || '';
-    const start = end > 1000 ? end - 40 : 0;
+    const end = +el.dataset.count, suf = el.dataset.suffix || '', pre = el.dataset.prefix || '';
+    const start = 0;
     const dur = 1600, t0 = performance.now();
     const step = now => {
       const k = clamp((now - t0) / dur, 0, 1);
       const eased = 1 - Math.pow(1 - k, 4);
-      el.textContent = Math.round(start + (end - start) * eased) + suf;
+      el.textContent = pre + Math.round(start + (end - start) * eased).toLocaleString('en-US') + suf;
       if (k < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -336,6 +336,98 @@
     sctx.lineTo(spark.width, spark.height); sctx.lineTo(0, spark.height); sctx.closePath();
     sctx.fillStyle = 'rgba(255,128,0,.12)'; sctx.fill();
   };
+
+  /* ---------- pit wall: GitHub contributions ---------- */
+  const pitwall = $('#pitwall');
+  const renderContributions = data => {
+    const days = data.days;
+    if (!days || !days.length) return;
+    const parse = d => new Date(d + 'T00:00:00Z');
+    const fmt = (d, opts) => parse(d).toLocaleDateString('en-GB', { timeZone: 'UTC', ...opts });
+    const plural = n => `${n} contribution${n === 1 ? '' : 's'}`;
+    const tipText = d => `<b>${plural(d.count)}</b> · ${fmt(d.date, { weekday: 'short', day: 'numeric', month: 'short' })}`;
+
+    const map = $('#contribMap');
+    const offset = (parse(days[0].date).getUTCDay() + 6) % 7;
+    for (let i = 0; i < offset; i++) map.insertAdjacentHTML('beforeend', '<span class="cell cell--pad"></span>');
+    days.forEach((d, i) => {
+      const cell = document.createElement('span');
+      cell.className = 'cell' + (i === days.length - 1 ? ' cell--today' : '');
+      cell.dataset.l = d.level;
+      cell.dataset.tip = tipText(d);
+      cell.style.transitionDelay = `${(offset + i) * 0.018}s`;
+      map.appendChild(cell);
+    });
+    map.setAttribute('aria-label', `${data.total} GitHub contributions in the last ${days.length} days`);
+
+    const first = days[0].date, last = days[days.length - 1].date;
+    $('#contribRange').textContent = `${fmt(first, { day: 'numeric', month: 'short' })} — ${fmt(last, { day: 'numeric', month: 'short', year: 'numeric' })}`;
+
+    const active = days.filter(d => d.count > 0).length;
+    const best = days.reduce((a, b) => (b.count > a.count ? b : a), days[0]);
+    let longest = 0, run = 0;
+    days.forEach(d => { run = d.count > 0 ? run + 1 : 0; longest = Math.max(longest, run); });
+    let current = 0;
+    const tail = days[days.length - 1].count > 0 ? days.length - 1 : days.length - 2;
+    for (let i = tail; i >= 0 && days[i].count > 0; i--) current++;
+
+    const stats = [
+      ['Contributions', data.total, ''],
+      ['Active days', active, `/ ${days.length}`],
+      ['Best day', best.count, best.count ? fmt(best.date, { day: 'numeric', month: 'short' }) : ''],
+      ['Longest streak', longest, longest === 1 ? 'day' : 'days'],
+    ];
+    $('#contribStats').innerHTML = stats
+      .map(([label, value, note]) => `<div><dt>${label}</dt><dd data-to="${value}">0${note ? `<small>${note}</small>` : ''}</dd></div>`)
+      .join('');
+
+    const max = Math.max(1, ...days.map(d => d.count));
+    const bars = $('#contribBars');
+    days.forEach((d, i) => {
+      const bar = document.createElement('span');
+      bar.className = 'bar' + (d.count ? '' : ' bar--zero');
+      if (d.count) bar.style.setProperty('--h', `${Math.max(4, (d.count / max) * 100)}%`);
+      bar.dataset.tip = tipText(d);
+      bar.style.transitionDelay = `${i * 0.025}s`;
+      bars.appendChild(bar);
+    });
+
+    const updated = new Date(data.generatedAt);
+    const breakdown = data.breakdown || {};
+    $('#contribUpdated').innerHTML =
+      `<span>${breakdown.commits ?? 0} commits · ${breakdown.pullRequests ?? 0} PRs · ${data.restricted ?? 0} in private repos</span>` +
+      `<span>Updated ${updated.toLocaleString('en-GB', { timeZone: 'Asia/Singapore', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })} SGT</span>`;
+
+    const tip = $('#contribTip');
+    pitwall.addEventListener('pointerover', e => {
+      const t = e.target.closest('[data-tip]');
+      if (!t) { tip.classList.remove('on'); return; }
+      tip.innerHTML = t.dataset.tip;
+      tip.classList.add('on');
+    });
+    pitwall.addEventListener('pointermove', e => { tip.style.left = e.clientX + 'px'; tip.style.top = e.clientY + 'px'; });
+    pitwall.addEventListener('pointerleave', () => tip.classList.remove('on'));
+
+    pitwall.hidden = false;
+    new IntersectionObserver(([entry], obs) => {
+      if (!entry.isIntersecting) return;
+      pitwall.classList.add('is-live');
+      $$('#contribStats dd').forEach(dd => {
+        const to = +dd.dataset.to, t0 = performance.now();
+        const step = now => {
+          const k = clamp((now - t0) / 1400, 0, 1);
+          dd.firstChild.textContent = Math.round(to * (1 - Math.pow(1 - k, 4)));
+          if (k < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+      obs.disconnect();
+    }, { threshold: 0.25 }).observe(pitwall);
+  };
+  fetch('data/contributions.json', { cache: 'no-cache' })
+    .then(r => (r.ok ? r.json() : Promise.reject()))
+    .then(renderContributions)
+    .catch(() => {});
 
   /* ---------- nav / menu ---------- */
   const nav = $('#nav'), menu = $('#menu'), burger = $('#burger');
