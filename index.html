@@ -292,66 +292,145 @@
       <div class="work__intro">
         <em class="sec-num">03 / WORK</em>
         <h2 class="work__intro-title">SELECTED<br>PROJECTS</h2>
-        <p>AI systems, social impact and competition platforms. Scroll sideways.</p>
+        <p>Live products, AI systems and social impact. Scroll sideways, and open any card for the full story.</p>
         <span class="work__arrow">→</span>
       </div>
 
-      <article class="proj" data-cursor="view">
-        <span class="proj__n">01</span>
+      <article class="proj" data-cursor="view" data-cursor-text="Open">
+        <div class="proj__shot">
+          <img src="assets/img/work/wtp-home-card.webp" alt="" width="800" height="500" loading="lazy" decoding="async">
+          <span class="proj__plate">01</span>
+          <span class="proj__live"><i></i>Live</span>
+        </div>
         <div class="proj__body">
-          <h3>WattLah!</h3>
+          <h3><button class="proj__open" type="button" data-project="whatsthisposition" data-cursor="view" data-cursor-text="Open" aria-haspopup="dialog">what’sthis<wbr><span>position</span></button></h3>
+          <p class="proj__type">Chess AI · Solo build · 2026</p>
+          <p class="proj__desc">Free, open-source chess game review. Stockfish 19 runs in your browser, labels every move from Brilliant to Blunder, and explains why in words a club player can follow.</p>
+          <p class="proj__win">Open source · Chrome extension</p>
+          <ul class="tags"><li>Next.js</li><li>TypeScript</li><li>Stockfish WASM</li><li>Computer vision</li></ul>
+          <div class="proj__foot">
+            <span class="proj__cta" aria-hidden="true">Open project <i>+</i></span>
+            <a class="proj__link" href="https://www.whatsthisposition.com" target="_blank" rel="noopener" data-cursor="hover">Visit site ↗</a>
+          </div>
+        </div>
+        <div class="proj__glow"></div>
+      </article>
+
+      <article class="proj" data-cursor="view" data-cursor-text="Open">
+        <div class="proj__shot">
+          <img src="assets/img/work/watt-home-card.webp" alt="" width="800" height="500" loading="lazy" decoding="async">
+          <span class="proj__plate">02</span>
+        </div>
+        <div class="proj__body">
+          <h3><button class="proj__open" type="button" data-project="wattlah" data-cursor="view" data-cursor-text="Open" aria-haspopup="dialog">WattLah!</button></h3>
           <p class="proj__type">Gamified home energy audits · LifeHack 2026</p>
-          <p class="proj__desc">Turns your apartment into a pixel-art game: walk around, scan appliance meters, find the biggest energy loads, build a savings plan and see where it ranks in your building's league.</p>
+          <p class="proj__desc">Turns your apartment into a pixel-art game: walk around, scan appliance meters, build a savings plan and see where it ranks in your building's league.</p>
           <p class="proj__win">LifeHack 2026 · Ecovolt track</p>
           <ul class="tags"><li>Next.js</li><li>React</li><li>TypeScript</li><li>Phaser 3</li><li>Tailwind</li></ul>
-          <a class="proj__link" href="https://github.com/acunli/LifeHack2026" target="_blank" rel="noopener">View on GitHub ↗</a>
+          <div class="proj__foot">
+            <span class="proj__cta" aria-hidden="true">Open project <i>+</i></span>
+            <a class="proj__link" href="https://github.com/acunli/LifeHack2026" target="_blank" rel="noopener" data-cursor="hover">GitHub ↗</a>
+          </div>
         </div>
         <div class="proj__glow"></div>
       </article>
 
-      <article class="proj" data-cursor="view">
-        <span class="proj__n">02</span>
+      <article class="proj" data-cursor="view" data-cursor-text="Open">
+        <div class="proj__shot">
+          <img src="assets/img/work/clip-home-card.webp" alt="" width="800" height="500" loading="lazy" decoding="async">
+          <span class="proj__plate">03</span>
+        </div>
         <div class="proj__body">
-          <h3>ClipContext</h3>
+          <h3><button class="proj__open" type="button" data-project="clipcontext" data-cursor="view" data-cursor-text="Open" aria-haspopup="dialog">ClipContext</button></h3>
           <p class="proj__type">Multimodal AI · Team Lead &amp; Lead Dev · 2026</p>
-          <p class="proj__desc">Understands a video through transcription, visual analysis and temporal alignment, then generates 10 trend-aware title, description and hashtag sets — ranked by an AI discriminator — and publishes straight to YouTube.</p>
+          <p class="proj__desc">Understands a video through transcription, visual analysis and temporal alignment, then generates 10 trend-aware titles, descriptions and hashtag sets, ranked by an AI discriminator.</p>
           <ul class="tags"><li>PyTorch</li><li>vLLM</li><li>ROCm</li><li>FastAPI</li><li>Next.js</li><li>Firebase</li></ul>
-          <a class="proj__link" href="https://github.com/acunli/ClipContext" target="_blank" rel="noopener">View on GitHub ↗</a>
+          <div class="proj__foot">
+            <span class="proj__cta" aria-hidden="true">Open project <i>+</i></span>
+            <a class="proj__link" href="https://github.com/acunli/ClipContext" target="_blank" rel="noopener" data-cursor="hover">GitHub ↗</a>
+          </div>
         </div>
         <div class="proj__glow"></div>
       </article>
 
-      <article class="proj" data-cursor="view">
-        <span class="proj__n">03</span>
+      <article class="proj" data-cursor="view" data-cursor-text="Open">
+        <div class="proj__shot" aria-hidden="true">
+          <div class="viz viz-flow">
+            <p class="viz-flow__head">Procurement request · audit trail</p>
+            <div class="viz-flow__row">
+              <span class="viz-flow__node">Submit</span><i class="viz-flow__wire"></i>
+              <span class="viz-flow__node">Approve</span><i class="viz-flow__wire" style="--d:.6s"></i>
+              <span class="viz-flow__node is-ok">Record</span>
+            </div>
+            <div class="viz-flow__log">
+              <p style="--i:0"><em>SUBMITTED</em>request raised by a member</p>
+              <p style="--i:1"><em>TIER</em>set by the amount</p>
+              <p style="--i:2"><em>APPROVED</em>committee sign-off</p>
+            </div>
+          </div>
+          <span class="proj__plate">04</span>
+        </div>
         <div class="proj__body">
-          <h3>NES Finance Tool</h3>
+          <h3><button class="proj__open" type="button" data-project="nes-finance" data-cursor="view" data-cursor-text="Open" aria-haspopup="dialog">NES Finance Tool</button></h3>
           <p class="proj__type">Technical Executive · NUS Entrepreneurship Society</p>
-          <p class="proj__desc">The finance governance system for NES: procurement requests routed through tiered approval workflows, with an append-only audit trail of who approved what and when. Net assets under management will soon exceed SGD 30,000.</p>
+          <p class="proj__desc">The finance governance system for NES: procurement requests routed through tiered approval workflows, with an append-only audit trail of who approved what and when.</p>
           <p class="proj__win">Now building</p>
           <ul class="tags"><li>Next.js</li><li>TypeScript</li><li>Postgres</li><li>Drizzle</li><li>Supabase</li></ul>
+          <div class="proj__foot">
+            <span class="proj__cta" aria-hidden="true">Open project <i>+</i></span>
+            <span class="proj__private">Private repo</span>
+          </div>
         </div>
         <div class="proj__glow"></div>
       </article>
 
-      <article class="proj" data-cursor="view">
-        <span class="proj__n">04</span>
+      <article class="proj" data-cursor="view" data-cursor-text="Open">
+        <div class="proj__shot" aria-hidden="true">
+          <div class="viz viz-wheel">
+            <svg class="viz-wheel__wheel" viewBox="-50 -50 100 100">
+              <circle r="46" class="viz-wheel__tyre"/><circle r="40" class="viz-wheel__rim"/>
+              <g class="viz-wheel__spokes">
+                <line x1="-40" y1="0" x2="40" y2="0"/><line x1="-40" y1="0" x2="40" y2="0" transform="rotate(22.5)"/>
+                <line x1="-40" y1="0" x2="40" y2="0" transform="rotate(45)"/><line x1="-40" y1="0" x2="40" y2="0" transform="rotate(67.5)"/>
+                <line x1="-40" y1="0" x2="40" y2="0" transform="rotate(90)"/><line x1="-40" y1="0" x2="40" y2="0" transform="rotate(112.5)"/>
+                <line x1="-40" y1="0" x2="40" y2="0" transform="rotate(135)"/><line x1="-40" y1="0" x2="40" y2="0" transform="rotate(157.5)"/>
+              </g>
+              <circle r="6" class="viz-wheel__hub"/>
+            </svg>
+            <div class="viz-wheel__stats">
+              <b>260+</b><span>bicycles distributed</span>
+              <b class="viz-wheel__sm">SGD 3,300+</b><span>raised</span>
+            </div>
+            <i class="viz-wheel__road"></i>
+          </div>
+          <span class="proj__plate">05</span>
+        </div>
         <div class="proj__body">
-          <h3>Chakr</h3>
+          <h3><button class="proj__open" type="button" data-project="chakr" data-cursor="view" data-cursor-text="Open" aria-haspopup="dialog">Chakr</button></h3>
           <p class="proj__type">Wheels of Hope · Head of Finance &amp; Tech Ops</p>
-          <p class="proj__desc">A social-impact initiative redistributing refurbished bicycles to underprivileged students. I built and ran the web app behind its operations, led the tech team, and raised SGD 3,300+ through crowdfunding.</p>
+          <p class="proj__desc">A social-impact initiative redistributing refurbished bicycles to underprivileged students. I built and ran the web app behind its operations and led the tech team.</p>
           <p class="proj__win">tGELF Youth Leader 2024–25 winner</p>
           <ul class="tags"><li>Web app</li><li>Excel</li><li>Fundraising</li></ul>
+          <div class="proj__foot">
+            <span class="proj__cta" aria-hidden="true">Open project <i>+</i></span>
+          </div>
         </div>
         <div class="proj__glow"></div>
       </article>
 
-      <article class="proj proj--building" data-cursor="view">
-        <span class="proj__n">05</span>
+      <article class="proj proj--building" data-cursor="view" data-cursor-text="Open">
+        <div class="proj__shot" aria-hidden="true">
+          <div class="viz viz-garage"><b>In the garage</b></div>
+          <span class="proj__plate">06</span>
+        </div>
         <div class="proj__body">
-          <h3>Megagem Online</h3>
+          <h3><button class="proj__open" type="button" data-project="ml-project" data-cursor="view" data-cursor-text="Open" aria-haspopup="dialog">ML Project</button></h3>
           <p class="proj__type">In the garage</p>
           <p class="proj__status" aria-label="Building">Building<span>.</span><span>.</span><span>.</span></p>
           <div class="proj__bar"><i></i></div>
+          <div class="proj__foot">
+            <span class="proj__cta" aria-hidden="true">Open project <i>+</i></span>
+          </div>
         </div>
         <div class="proj__glow"></div>
       </article>
@@ -370,6 +449,240 @@
     <div class="work__prog"><i id="workProg"></i></div>
   </div>
 </section>
+
+<!-- ========== PROJECT POPUPS ==========
+     One <template id="pm-…"> per card; the id matches the card button's data-project.
+     .pm-media <figure>s become the gallery: data-src = image (or video poster), data-video = mp4,
+     no data-src = the figure's own markup is the slide. data-cap = caption.
+     template data-url / data-state fill the browser bar above the gallery. -->
+
+<template id="pm-whatsthisposition" data-url="whatsthisposition.com" data-state="Live">
+  <div class="pm-media">
+    <figure data-video="assets/img/work/wtp-review.mp4" data-src="assets/img/work/wtp-review.webp" data-cap="A real review on the live site: Morphy's Opera Game (1858), stepped through move by move."></figure>
+    <figure data-src="assets/img/work/wtp-brilliant.webp" data-cap="16.Qb8+ labelled Brilliant, with the reasons: what's offered, what happens if Black takes, and why the quiet move is weaker."></figure>
+    <figure data-src="assets/img/work/wtp-home.webp" data-cap="Bring a Chess.com or Lichess username, a game link or a PGN. No account, no limit."></figure>
+    <figure data-src="assets/img/work/wtp-lines.webp" data-cap="Hover any move an explanation names and a small board plays the line out."></figure>
+    <figure data-src="assets/img/work/wtp-plans.webp" data-cap="Position X-ray: plans for both sides, each with an engine verdict and the reasons drawn on the board."></figure>
+    <figure data-src="assets/img/work/wtp-analysis.webp" data-cap="A board you can think on: live engine lines, arrows and circles, threats and weaknesses for both sides."></figure>
+  </div>
+  <div class="pm-info">
+    <p class="pm__type">Chess AI · Solo build · 2026</p>
+    <h2 class="pm__title">what’sthis<wbr><span>position</span></h2>
+    <p class="pm__lead">Chess games and positions, explained so anyone gets <em>why</em>. Stockfish 19 runs entirely in your browser, labels every move from Brilliant to Blunder, then explains the reasoning step by step. Every reason is built from the board and targeted engine searches, never invented.</p>
+    <div class="pm__links">
+      <a class="pm__go" href="https://www.whatsthisposition.com" target="_blank" rel="noopener" data-cursor="hover"><i></i>Visit whatsthisposition.com <b>↗</b></a>
+      <a class="pm__alt" href="https://chromewebstore.google.com/detail/bngblpcelnjnhbmaljgelkddkfhjneka" target="_blank" rel="noopener" data-cursor="hover">Chrome extension ↗</a>
+      <a class="pm__alt" href="https://github.com/acunli/whatsthisposition" target="_blank" rel="noopener" data-cursor="hover">Source on GitHub ↗</a>
+    </div>
+    <div class="pm__stats">
+      <div><b>213</b><span>Brilliant moves from top players' games checked</span></div>
+      <div><b>1.84M</b><span>Strong-player games behind the opening book</span></div>
+      <div><b>11</b><span>Move labels, from published, documented rules</span></div>
+      <div><b>~3.5</b><span>Accuracy points from Chess.com's own numbers, on reviewed games</span></div>
+    </div>
+    <h3 class="pm__h">What it does</h3>
+    <ol class="pm__feats">
+      <li><b>Game review</b><span>From a Chess.com or Lichess username, a Lichess link or a PGN. Every move gets a Chess.com-style label plus accuracy on Chess.com's scale.</span></li>
+      <li><b>Why it's brilliant</b><span>What is given up, what the move does instead, what happens after each way of taking it, and why the obvious move falls short.</span></li>
+      <li><b>Openings, as deep as theory goes</b><span>How often strong players choose each book move, how they score, and where the game left theory.</span></li>
+      <li><b>Every line can be watched</b><span>Hover or tap a move an explanation names and a small board plays it out.</span></li>
+      <li><b>Position X-ray</b><span>Any position, from a FEN, a hand setup or a screenshot read on your device: threats, weaknesses and plans with an engine verdict.</span></li>
+      <li><b>On Chess.com</b><span>A Chrome extension reviews a finished game right where you played it, then opens the full review here.</span></li>
+    </ol>
+    <h3 class="pm__h">Under the hood</h3>
+    <p class="pm__p">Everything heavy runs in the visitor's browser. Stockfish 19, compiled to WebAssembly, reviews a game on a small pool of workers, then re-searches the tactical moments deeper. Labels come from expected-score loss; explanations come from rules over verified board facts plus targeted probes: a null-move search for threats, and <code>searchmoves</code> to test each way of taking a sacrifice. A small CNN reads screenshots on the device. The server only serves files and proxies Chess.com and Lichess.</p>
+    <h3 class="pm__h">Stack</h3>
+    <ul class="tags"><li>Next.js 16</li><li>React</li><li>TypeScript</li><li>Stockfish 19 · WASM</li><li>Web Workers</li><li>three.js</li><li>chess.js</li><li>On-device CNN</li><li>Chrome extension</li><li>Docker</li><li>Vercel</li></ul>
+    <p class="pm__note">Free software under GPL-3.0. Screens captured from the live site.</p>
+  </div>
+</template>
+
+<template id="pm-wattlah" data-url="wattlah · local build" data-state="Prototype">
+  <div class="pm-media">
+    <figure data-src="assets/img/work/watt-home.webp" data-cap="The audit: walk the flat, scan glowing smart plugs, and see every appliance against a comparable home."></figure>
+    <figure data-src="assets/img/work/watt-plan.webp" data-cap="Ways to save: preview an action and watch the projected score move."></figure>
+    <figure data-src="assets/img/work/watt-league.webp" data-cap="The building league. Projected plans are labelled as projections, never as measured results."></figure>
+    <figure data-src="assets/img/work/watt-resident.webp" data-cap="Pick a handle and a resident. The block sees your handle, never your unit number."></figure>
+    <figure data-src="assets/img/work/watt-login.webp" data-cap="Room login: the start of the audit."></figure>
+  </div>
+  <div class="pm-info">
+    <p class="pm__type">Gamified energy audits · LifeHack 2026 · Team build</p>
+    <h2 class="pm__title">Watt<span>Lah!</span></h2>
+    <p class="pm__lead">Everyone agrees they should use less electricity; almost nobody changes what they do. WattLah turns your apartment into a short, game-like energy audit: walk around the pixel home, scan appliance meters, find the biggest loads, preview concrete savings and see how you rank in your building's league.</p>
+    <div class="pm__links">
+      <a class="pm__go" href="https://github.com/acunli/LifeHack2026" target="_blank" rel="noopener" data-cursor="hover">Source on GitHub <b>↗</b></a>
+    </div>
+    <dl class="pm__spec">
+      <div><dt>Event</dt><dd>LifeHack 2026</dd></div>
+      <div><dt>Track</dt><dd>Ecovolt · Small Green Habits</dd></div>
+      <div><dt>Data</dt><dd>Simulated readings, clearly labelled</dd></div>
+    </dl>
+    <h3 class="pm__h">The journey</h3>
+    <ol class="pm__journey">
+      <li>Room login</li><li>Choose a handle</li><li>Scan 5 meters</li><li>Inspect &amp; pause appliances</li><li>Build a savings plan</li><li>League rank</li>
+    </ol>
+    <h3 class="pm__h">What it does</h3>
+    <ol class="pm__feats">
+      <li><b>The flat is the interface</b><span>Walk with the keyboard or touch controls. Every glow is an appliance nobody has looked at yet.</span></li>
+      <li><b>Find the biggest drains</b><span>Scan meters to see each appliance's load against a typical flat.</span></li>
+      <li><b>Build a savings plan</b><span>Preview real actions, see what each one is worth, and watch the projected score climb.</span></li>
+      <li><b>Make it social</b><span>A building league under a public handle, so the block competes without anyone's unit on show.</span></li>
+      <li><b>Honest numbers</b><span>Measured usage is kept apart from hypothetical plans; league entries say Plan or Projected.</span></li>
+    </ol>
+    <h3 class="pm__h">Under the hood</h3>
+    <p class="pm__p">Phaser 3 renders the room, movement and appliance interaction; React owns the resident journey, the dashboard and the league. A typed, SSR-safe event bridge connects the two. Audit progress lives in room-scoped localStorage, so no password or private account data is ever stored. Keyboard and touch movement, accessible scan dialogs and reduced motion are all supported.</p>
+    <h3 class="pm__h">Stack</h3>
+    <ul class="tags"><li>Next.js 16</li><li>React 19</li><li>TypeScript</li><li>Tailwind CSS 4</li><li>Phaser 3</li><li>Vitest</li><li>Playwright</li></ul>
+    <p class="pm__note">Screens captured from the repo running locally. Pixel art by LimeZu (Modern Interiors).</p>
+  </div>
+</template>
+
+<template id="pm-clipcontext" data-url="clip-context.vercel.app" data-state="Live">
+  <div class="pm-media">
+    <figure data-src="assets/img/work/clip-home.webp" data-cap="Upload a clip, get ranked titles, descriptions and hashtags grounded in what's actually said and shown."></figure>
+    <figure data-src="assets/img/work/clip-pipeline.webp" data-cap="The five stages the backend actually runs: validate, transcribe, select windows, build context, generate sets."></figure>
+    <figure data-src="assets/img/work/clip-features.webp" data-cap="Built around the backend's real artifacts: speech context, sparse visual evidence, a canonical VideoContext."></figure>
+    <figure data-src="assets/img/work/clip-tech.webp" data-cap="Why the output stays grounded: trends shape the writing, but can't invent facts the video doesn't contain."></figure>
+    <figure data-src="assets/img/work/clip-process.webp" data-cap="Processing: every pipeline stage checked off before the results."></figure>
+  </div>
+  <div class="pm-info">
+    <p class="pm__type">Multimodal AI · Team Lead &amp; Lead Developer · Jul – Aug 2026</p>
+    <h2 class="pm__title">Clip<span>Context</span></h2>
+    <p class="pm__lead">Creators spend real time writing titles, descriptions and hashtags that end up disconnected from what the video shows. ClipContext takes a short clip and returns the top candidates for each, picked by an AI discriminator and grounded in the video's own speech and visuals. Built for the lablab.ai AMD Developer Hackathon (ACT II), with AI stages running on a real AMD GPU via ROCm and vLLM.</p>
+    <div class="pm__links">
+      <a class="pm__go" href="https://clip-context.vercel.app" target="_blank" rel="noopener" data-cursor="hover"><i></i>Visit the site <b>↗</b></a>
+      <a class="pm__alt" href="https://github.com/acunli/ClipContext" target="_blank" rel="noopener" data-cursor="hover">Source on GitHub ↗</a>
+    </div>
+    <div class="pm__stats">
+      <div><b>10</b><span>Candidates per pool, each from a distinct strategy</span></div>
+      <div><b>Top 5</b><span>Surfaced per pool after AI ranking</span></div>
+      <div><b>1 FPS</b><span>Local frame scan before any paid AI call</span></div>
+      <div><b>3</b><span>Pools: titles, descriptions, hashtags</span></div>
+    </div>
+    <h3 class="pm__h">What it does</h3>
+    <ol class="pm__feats">
+      <li><b>Local-first preprocessing</b><span>Validation, audio extraction, frame scanning, quality scoring and perceptual-diversity frame selection all run locally.</span></li>
+      <li><b>Evidence-grounded generation</b><span>Every candidate must trace back to a canonical VideoContext built from the transcript and visuals.</span></li>
+      <li><b>Real trend analysis</b><span>Worldwide YouTube trends in the video's niche, or a creator's own top-performing videos when they share their channel.</span></li>
+      <li><b>Ten strategies, not ten rewordings</b><span>Question, bold claim, curiosity gap, number-led, story and more.</span></li>
+      <li><b>Independent AI ranking</b><span>A second model scores each pool against the video's ground truth, with a stated reason per score.</span></li>
+      <li><b>Publish to YouTube</b><span>Optional sign-in and a direct upload with the candidates the creator picked.</span></li>
+    </ol>
+    <h3 class="pm__h">Under the hood</h3>
+    <p class="pm__p">A FastAPI backend runs a sparse pipeline: local transcription, OpenCV and FFmpeg frame work, one multimodal understanding call, then generation and ranking. Each AI stage can route to an AMD ROCm/vLLM server instead of Fireworks AI, with automatic fallback and a per-stage audit trail. Next.js on the front, Firebase for optional accounts.</p>
+    <h3 class="pm__h">Stack</h3>
+    <ul class="tags"><li>Python</li><li>FastAPI</li><li>PyTorch</li><li>vLLM</li><li>ROCm</li><li>Fireworks AI</li><li>OpenCV</li><li>FFmpeg</li><li>Next.js</li><li>React</li><li>TypeScript</li><li>Firebase</li><li>YouTube Data API</li><li>Docker</li><li>Vercel</li><li>Railway</li></ul>
+    <p class="pm__note">Screens captured from the live site.</p>
+  </div>
+</template>
+
+<template id="pm-nes-finance" data-url="nes finance · internal" data-state="Private">
+  <div class="pm-media">
+    <figure data-cap="How a request moves through the system. The screens stay private: it's an internal tool for the society's money.">
+      <div class="viz viz-flow viz-flow--big">
+        <p class="viz-flow__head">Procurement request · audit trail</p>
+        <div class="viz-flow__row">
+          <span class="viz-flow__node">Submit</span><i class="viz-flow__wire"></i>
+          <span class="viz-flow__node">Classify</span><i class="viz-flow__wire" style="--d:.45s"></i>
+          <span class="viz-flow__node">Approve</span><i class="viz-flow__wire" style="--d:.9s"></i>
+          <span class="viz-flow__node is-ok">Record</span>
+        </div>
+        <div class="viz-flow__log">
+          <p style="--i:0"><em>SUBMITTED</em>request raised by a member</p>
+          <p style="--i:1"><em>TIER</em>approval tier set by the amount</p>
+          <p style="--i:2"><em>APPROVED</em>committee sign-off</p>
+          <p style="--i:3"><em>APPROVED</em>staff advisor sign-off</p>
+          <p style="--i:4"><em>REF</em>sequential reference issued</p>
+        </div>
+      </div>
+    </figure>
+  </div>
+  <div class="pm-info">
+    <p class="pm__type">Finance governance · NUS Entrepreneurship Society</p>
+    <h2 class="pm__title">NES Finance <span>Tool</span></h2>
+    <p class="pm__lead">The finance governance system for the NUS Entrepreneurship Society, which I'm building as its Technical Executive. Procurement requests are routed through tiered approval workflows, and every decision lands in an append-only audit trail of who approved what, and when. Net assets under management will soon exceed SGD 30,000.</p>
+    <dl class="pm__spec">
+      <div><dt>Role</dt><dd>Technical Executive, NES</dd></div>
+      <div><dt>Status</dt><dd>Now building</dd></div>
+      <div><dt>Users</dt><dd>Members, committee approvers, the Staff Advisor</dd></div>
+      <div><dt>Access</dt><dd>Internal · private repository</dd></div>
+    </dl>
+    <h3 class="pm__h">What it does</h3>
+    <ol class="pm__feats">
+      <li><b>Procurement requests</b><span>Members submit a request; its amount decides which approval tier applies, shown live on the form.</span></li>
+      <li><b>Tiered approvals</b><span>Each tier needs sign-off from specific roles, stored as configuration so the society's rules can change without a code change.</span></li>
+      <li><b>Segregation of duties</b><span>Nobody can approve their own request.</span></li>
+      <li><b>Append-only audit trail</b><span>Approval and audit records are never edited or deleted. An editable audit trail is not an audit trail.</span></li>
+      <li><b>Explicit status machine</b><span>Every transaction moves through defined states; a fully approved one gets a sequential reference.</span></li>
+    </ol>
+    <h3 class="pm__h">Under the hood</h3>
+    <p class="pm__p">The business rules (tier classification, approval completion, segregation of duties, status transitions) are pure functions with no database access, so they're unit-tested in isolation with Vitest. Postgres on Supabase through Drizzle ORM, with the Next.js App Router and TypeScript in strict mode.</p>
+    <h3 class="pm__h">Stack</h3>
+    <ul class="tags"><li>Next.js</li><li>TypeScript</li><li>Tailwind</li><li>Postgres</li><li>Supabase</li><li>Drizzle ORM</li><li>Vitest</li></ul>
+  </div>
+</template>
+
+<template id="pm-chakr" data-url="chakr · wheels of hope" data-state="Impact">
+  <div class="pm-media">
+    <figure data-cap="Chakr in numbers: refurbished bicycles for students who needed them, funded by the community.">
+      <div class="viz viz-wheel viz-wheel--big">
+        <svg class="viz-wheel__wheel" viewBox="-50 -50 100 100">
+          <circle r="46" class="viz-wheel__tyre"/><circle r="40" class="viz-wheel__rim"/>
+          <g class="viz-wheel__spokes">
+            <line x1="-40" y1="0" x2="40" y2="0"/><line x1="-40" y1="0" x2="40" y2="0" transform="rotate(22.5)"/>
+            <line x1="-40" y1="0" x2="40" y2="0" transform="rotate(45)"/><line x1="-40" y1="0" x2="40" y2="0" transform="rotate(67.5)"/>
+            <line x1="-40" y1="0" x2="40" y2="0" transform="rotate(90)"/><line x1="-40" y1="0" x2="40" y2="0" transform="rotate(112.5)"/>
+            <line x1="-40" y1="0" x2="40" y2="0" transform="rotate(135)"/><line x1="-40" y1="0" x2="40" y2="0" transform="rotate(157.5)"/>
+          </g>
+          <circle r="6" class="viz-wheel__hub"/>
+        </svg>
+        <div class="viz-wheel__stats">
+          <b>260+</b><span>bicycles distributed</span>
+          <b class="viz-wheel__sm">SGD 3,300+</b><span>raised through crowdfunding</span>
+        </div>
+        <i class="viz-wheel__road"></i>
+      </div>
+    </figure>
+  </div>
+  <div class="pm-info">
+    <p class="pm__type">Social impact · Mar 2025 – Feb 2026</p>
+    <h2 class="pm__title">Chakr<span>.</span></h2>
+    <p class="pm__lead">Wheels of Hope: a social-impact initiative redistributing refurbished bicycles to underprivileged students. As Head of Financing &amp; Technical Operations, I built and ran the web app behind its operations, led the tech team, and raised the money through crowdfunding.</p>
+    <div class="pm__stats">
+      <div><b>260+</b><span>Bicycle distributions</span></div>
+      <div><b>3,300+</b><span>SGD raised through crowdfunding</span></div>
+      <div><b>100+</b><span>Projects in the tGELF Youth Leader field</span></div>
+      <div><b>Winner</b><span>tGELF Youth Leader 2024–25</span></div>
+    </div>
+    <dl class="pm__spec">
+      <div><dt>Role</dt><dd>Head of Financing &amp; Technical Operations</dd></div>
+      <div><dt>Period</dt><dd>Mar 2025 – Feb 2026</dd></div>
+    </dl>
+    <h3 class="pm__h">What I did</h3>
+    <ol class="pm__feats">
+      <li><b>Built the operations app</b><span>The web app behind the project's day-to-day operations, which I built, ran and led the tech team on.</span></li>
+      <li><b>Raised the money</b><span>SGD 3,300+ through crowdfunding.</span></li>
+      <li><b>Steered with data</b><span>Used the numbers to guide procurement and distribution decisions.</span></li>
+    </ol>
+    <h3 class="pm__h">Toolkit</h3>
+    <ul class="tags"><li>Web app</li><li>Excel</li><li>Fundraising</li><li>Financial analysis</li></ul>
+  </div>
+</template>
+
+<template id="pm-ml-project" data-url="classified" data-state="Building">
+  <div class="pm-media">
+    <figure data-cap="Under wraps for now.">
+      <div class="viz viz-garage viz-garage--big"><b>In the garage</b></div>
+    </figure>
+  </div>
+  <div class="pm-info">
+    <p class="pm__type">In the garage</p>
+    <h2 class="pm__title">ML <span>Project</span></h2>
+    <p class="pm__lead">Something new is being built. Details when it's ready to leave the garage.</p>
+    <p class="proj__status pm__building" aria-label="Building">Building<span>.</span><span>.</span><span>.</span></p>
+    <div class="proj__bar"><i></i></div>
+  </div>
+</template>
 
 <!-- ========== BEYOND ========== -->
 <section class="beyond" id="beyond">
@@ -534,6 +847,50 @@
 
 </div>
 </main>
+
+<!-- ========== PROJECT POPUP (filled from the templates in WORK) ========== -->
+<div class="pm" id="pm" hidden>
+  <div class="pm__scrim" data-pm-close></div>
+  <div class="pm__panel" role="dialog" aria-modal="true" aria-labelledby="pmTitle" tabindex="-1">
+    <div class="pm__kerb" aria-hidden="true"></div>
+    <header class="pm__bar">
+      <div class="pm__crumb">
+        <em>03 / WORK</em>
+        <span class="pm__count"><b id="pmIdx">01</b>/<span id="pmTotal">06</span></span>
+      </div>
+      <div class="pm__ctrl">
+        <button class="pm__step" type="button" data-pm-step="-1" aria-label="Previous project" data-cursor="hover">←<span>Prev</span></button>
+        <button class="pm__step" type="button" data-pm-step="1" aria-label="Next project" data-cursor="hover"><span>Next</span>→</button>
+        <button class="pm__close" type="button" data-pm-close aria-label="Close project" data-cursor="hover"><span>Esc</span><i></i></button>
+      </div>
+    </header>
+    <div class="pm__scroll" id="pmScroll">
+      <div class="pm__grid">
+        <section class="pm__stage" aria-label="Preview">
+          <div class="pm__window" id="pmWindow">
+            <div class="pm__chrome">
+              <span class="pm__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="pm__url" id="pmUrl"></span>
+              <span class="pm__state" id="pmState"></span>
+            </div>
+            <div class="pm__screen" id="pmScreen"></div>
+            <div class="pm__wipe" aria-hidden="true"></div>
+          </div>
+          <div class="pm__under">
+            <p class="pm__cap" id="pmCap" aria-live="polite"></p>
+            <div class="pm__slidenav">
+              <button type="button" data-pm-slide="-1" aria-label="Previous image" data-cursor="hover">←</button>
+              <span id="pmSlideN"></span>
+              <button type="button" data-pm-slide="1" aria-label="Next image" data-cursor="hover">→</button>
+            </div>
+          </div>
+          <div class="pm__thumbs" id="pmThumbs"></div>
+        </section>
+        <section class="pm__info" id="pmInfo"></section>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="js/main.js"></script>
 </body>

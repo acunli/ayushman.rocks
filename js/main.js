@@ -230,6 +230,8 @@
           hero.classList.add('is-in');
           $$('.hero [data-split]').forEach(el => el.classList.add('split-in'));
           $$('.hero .reveal').forEach(el => setTimeout(() => el.classList.add('in'), 900));
+          const linked = projFromHash();
+          if (linked >= 0) setTimeout(() => openProject(linked, null), 1000);
         }, 550);
         setTimeout(() => { cancelAnimationFrame(loaderRAF); loader.remove(); }, 1600);
       }, reduced ? 0 : 650);
@@ -275,7 +277,7 @@
       ctext.textContent = '';
       if (!t) return;
       if (t.matches('input, textarea')) return;
-      if (t.dataset.cursor === 'view') { cursor.classList.add('is-view'); ctext.textContent = 'Explore'; }
+      if (t.dataset.cursor === 'view') { cursor.classList.add('is-view'); ctext.textContent = t.dataset.cursorText || 'Explore'; }
       else cursor.classList.add('is-hover');
     });
     addEventListener('pointerdown', () => cursor.classList.add('is-down'));
@@ -313,6 +315,213 @@
     });
     card.addEventListener('pointerleave', () => { card.style.transform = ''; });
   });
+
+  /* ---------- project popup ---------- */
+  // Content lives in <template id="pm-…"> blocks in index.html; this only lays it out.
+  const pm = $('#pm');
+  const pmPanel = $('.pm__panel', pm), pmScroll = $('#pmScroll'), pmInfo = $('#pmInfo');
+  const pmWindow = $('#pmWindow'), pmScreen = $('#pmScreen'), pmThumbs = $('#pmThumbs');
+  const pmCap = $('#pmCap'), pmSlideN = $('#pmSlideN'), pmStage = $('.pm__stage', pm);
+  const projButtons = $$('.proj__open');
+  const projIds = projButtons.map(b => b.dataset.project);
+  const pad2 = n => String(n).padStart(2, '0');
+  let pmCurrent = -1, pmSlide = 0, pmSlides = [], pmLastFocus = null, pmTimer = 0;
+  $('#pmTotal').textContent = pad2(projIds.length);
+
+  const playVideo = v => {
+    const slide = v.parentElement;
+    const p = v.play();
+    slide.dataset.badge = '● Live capture · tap to pause';
+    if (p) p.catch(() => { slide.dataset.badge = '▶ Tap to play'; });
+  };
+
+  const goSlide = (k, instant) => {
+    if (!pmSlides.length) return;
+    k = (k + pmSlides.length) % pmSlides.length;
+    if (k === pmSlide && !instant) return;
+    pmSlide = k;
+    pmSlides.forEach((s, i) => {
+      s.el.classList.toggle('is-on', i === k);
+      s.thumb && s.thumb.classList.toggle('is-on', i === k);
+      s.thumb && s.thumb.setAttribute('aria-current', i === k);
+      const v = s.el.querySelector('video');
+      if (!v) return;
+      if (i === k && !reduced) playVideo(v);
+      else { v.pause(); s.el.dataset.badge = '▶ Tap to play'; }
+    });
+    pmCap.textContent = pmSlides[k].cap;
+    pmSlideN.textContent = `${pad2(k + 1)} / ${pad2(pmSlides.length)}`;
+    const t = pmSlides[k].thumb;
+    if (t) pmThumbs.scrollTo({ left: t.offsetLeft - pmThumbs.clientWidth / 2 + t.offsetWidth / 2, behavior: instant ? 'auto' : 'smooth' });
+    if (!instant && !reduced) {
+      pmWindow.classList.remove('is-wiping');
+      void pmWindow.offsetWidth;
+      pmWindow.classList.add('is-wiping');
+    }
+  };
+
+  const renderProject = i => {
+    const tpl = $('#pm-' + projIds[i]);
+    const frag = tpl.content.cloneNode(true);
+    pmCurrent = i;
+    $('#pmIdx').textContent = pad2(i + 1);
+    $('#pmUrl').textContent = tpl.dataset.url || '';
+    $('#pmState').innerHTML = tpl.dataset.state ? `<i></i>${tpl.dataset.state}` : '';
+    pm.dataset.state = (tpl.dataset.state || '').toLowerCase();
+
+    pmScreen.querySelectorAll('video').forEach(v => { v.pause(); v.removeAttribute('src'); v.load(); });
+    pmScreen.textContent = ''; pmThumbs.textContent = '';
+    const figs = $$('.pm-media figure', frag);
+    pmSlides = figs.map((f, k) => {
+      const el = document.createElement('div');
+      el.className = 'pm__slide';
+      const cap = f.dataset.cap || '';
+      if (f.dataset.video) {
+        const v = document.createElement('video');
+        Object.assign(v, { muted: true, loop: true, playsInline: true, preload: 'metadata', poster: f.dataset.src, src: f.dataset.video });
+        v.setAttribute('aria-label', cap);
+        el.classList.add('pm__slide--video');
+        el.dataset.badge = '▶ Tap to play';
+        el.addEventListener('click', () => (v.paused ? playVideo(v) : (v.pause(), el.dataset.badge = '▶ Tap to play')));
+        el.appendChild(v);
+      } else if (f.dataset.src) {
+        const img = new Image();
+        Object.assign(img, { src: f.dataset.src, alt: cap, decoding: 'async', width: 1440, height: 900 });
+        el.appendChild(img);
+      } else {
+        el.append(...f.childNodes);
+      }
+      pmScreen.appendChild(el);
+
+      let thumb = null;
+      if (figs.length > 1) {
+        thumb = document.createElement('button');
+        thumb.type = 'button';
+        thumb.className = 'pm__thumb' + (f.dataset.video ? ' pm__thumb--video' : '');
+        thumb.dataset.cursor = 'hover';
+        thumb.setAttribute('aria-label', `Show preview ${k + 1} of ${figs.length}`);
+        if (f.dataset.src) thumb.innerHTML = `<img src="${f.dataset.src}" alt="" loading="lazy" decoding="async">`;
+        thumb.addEventListener('click', () => goSlide(k));
+        pmThumbs.appendChild(thumb);
+      }
+      return { el, cap, thumb };
+    });
+    pmStage.classList.toggle('is-single', pmSlides.length < 2);
+
+    pmInfo.textContent = '';
+    pmInfo.append(...$('.pm-info', frag).childNodes);
+    [...pmInfo.children].forEach((el, k) => el.style.setProperty('--i', k));
+    const title = $('.pm__title', pmInfo);
+    if (title) title.id = 'pmTitle';
+
+    pmSlide = 0;
+    goSlide(0, true);
+    pmScroll.scrollTop = 0;
+  };
+
+  // clip-path that frames `r` inside the panel, so the popup can grow out of / back into a card
+  const clipTo = r => {
+    const p = pmPanel.getBoundingClientRect();
+    const v = [r.top - p.top, p.right - r.right, p.bottom - r.bottom, r.left - p.left].map(n => Math.max(0, n));
+    return `inset(${v.map(n => n.toFixed(1) + 'px').join(' ')} round 4px)`;
+  };
+  const cardFor = i => projButtons[i] && projButtons[i].closest('.proj');
+  const onScreen = el => {
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return r.right > 0 && r.left < innerWidth && r.bottom > 0 && r.top < innerHeight;
+  };
+
+  const openProject = (i, from) => {
+    if (i < 0) return;
+    clearTimeout(pmTimer);
+    pmLastFocus = document.activeElement;
+    renderProject(i);
+    pm.classList.remove('is-closing', 'is-far', 'is-switching');
+    pm.hidden = false;
+    document.documentElement.classList.add('pm-open');
+    if (from && onScreen(from) && !reduced) {
+      pmPanel.style.transition = 'none';
+      pmPanel.style.clipPath = clipTo(from.getBoundingClientRect());
+      void pmPanel.offsetWidth;
+      pmPanel.style.transition = '';
+    }
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      pm.classList.add('is-open');
+      pmPanel.style.clipPath = '';
+    }));
+    pmPanel.focus({ preventScroll: true });
+    history.replaceState(null, '', '#' + projIds[i]);
+  };
+
+  const closeProject = () => {
+    if (pm.hidden || pm.classList.contains('is-closing')) return;
+    const card = cardFor(pmCurrent);
+    pm.classList.remove('is-open');
+    pm.classList.add('is-closing');
+    if (onScreen(card) && !reduced) pmPanel.style.clipPath = clipTo(card.getBoundingClientRect());
+    else pm.classList.add('is-far');
+    pmScreen.querySelectorAll('video').forEach(v => v.pause());
+    pmTimer = setTimeout(() => {
+      pm.hidden = true;
+      pm.classList.remove('is-closing', 'is-far');
+      pmPanel.style.clipPath = '';
+      document.documentElement.classList.remove('pm-open');
+      pmScreen.querySelectorAll('video').forEach(v => { v.removeAttribute('src'); v.load(); });
+      if (pmLastFocus && pmLastFocus.focus) pmLastFocus.focus({ preventScroll: true });
+    }, reduced ? 0 : 640);
+    history.replaceState(null, '', location.pathname + location.search);
+  };
+
+  const stepProject = d => {
+    if (pm.classList.contains('is-switching')) return;
+    const n = (pmCurrent + d + projIds.length) % projIds.length;
+    pm.classList.add('is-switching');
+    setTimeout(() => {
+      renderProject(n);
+      pm.classList.remove('is-switching');
+      history.replaceState(null, '', '#' + projIds[n]);
+    }, reduced ? 0 : 280);
+  };
+
+  $$('.proj').forEach(card => {
+    const btn = $('.proj__open', card);
+    if (!btn) return;
+    card.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      openProject(projIds.indexOf(btn.dataset.project), card);
+    });
+  });
+  $$('[data-pm-close]', pm).forEach(el => el.addEventListener('click', closeProject));
+  $$('[data-pm-step]', pm).forEach(el => el.addEventListener('click', () => stepProject(+el.dataset.pmStep)));
+  $$('[data-pm-slide]', pm).forEach(el => el.addEventListener('click', () => goSlide(pmSlide + +el.dataset.pmSlide)));
+
+  document.addEventListener('keydown', e => {
+    if (pm.hidden) return;
+    if (e.key === 'Escape') { e.preventDefault(); closeProject(); }
+    else if (e.key === 'ArrowRight' && !e.target.matches('input, textarea')) goSlide(pmSlide + 1);
+    else if (e.key === 'ArrowLeft' && !e.target.matches('input, textarea')) goSlide(pmSlide - 1);
+    else if (e.key === 'Tab') {
+      const f = $$('a[href], button:not([disabled])', pmPanel).filter(el => el.offsetParent !== null);
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  let swipeX = null;
+  pmScreen.addEventListener('touchstart', e => { swipeX = e.touches[0].clientX; }, { passive: true });
+  pmScreen.addEventListener('touchend', e => {
+    if (swipeX === null) return;
+    const dx = e.changedTouches[0].clientX - swipeX;
+    swipeX = null;
+    if (Math.abs(dx) > 45) goSlide(pmSlide + (dx < 0 ? 1 : -1));
+  });
+
+  // ayushman.rocks/#whatsthisposition opens that project
+  const projFromHash = () => projIds.indexOf(decodeURIComponent(location.hash.slice(1)));
+  addEventListener('hashchange', () => { const i = projFromHash(); if (i >= 0) openProject(i, cardFor(i)); });
 
   /* ---------- HUD: clock + speed ---------- */
   const clockEl = $('#clock');

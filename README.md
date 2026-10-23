@@ -7,7 +7,7 @@ Personal site — plain HTML/CSS/JS, no build step.
 Open http://localhost:5173
 
 ## Edit content (all in index.html)
-- **Projects** — the `<article class="proj">` blocks in the WORK section. The four projects are placeholders: replace them with your real ones.
+- **Projects** — the `<article class="proj">` cards in the WORK section. What each card's popup shows lives in the matching `<template id="pm-…">` right after that section (gallery images, text, links). Preview images are in `assets/img/work/`.
 - **Skills** — the `<article class="skill">` blocks.
 - **Beyond** — the `<li>` items in `#beyondList`.
 - **Stats** — the `data-count` numbers in the About section.
