@@ -1,21 +1,16 @@
 {
   "login": "acunli",
-  "generatedAt": "2026-10-29T21:20:48.950Z",
-  "total": 102,
+  "generatedAt": "2026-10-30T20:58:51.357Z",
+  "total": 91,
   "restricted": 10,
   "breakdown": {
-    "commits": 91,
+    "commits": 81,
     "pullRequests": 0,
     "reviews": 0,
     "issues": 0,
-    "repositories": 1
+    "repositories": 0
   },
   "days": [
-    {
-      "date": "2026-09-30",
-      "count": 12,
-      "level": 4
-    },
     {
       "date": "2026-10-01",
       "count": 0,
@@ -159,6 +154,11 @@
     {
       "date": "2026-10-29",
       "count": 2,
+      "level": 1
+    },
+    {
+      "date": "2026-10-30",
+      "count": 1,
       "level": 1
     }
   ]
