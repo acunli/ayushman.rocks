@@ -6,14 +6,18 @@ Personal site — plain HTML/CSS/JS, no build step.
     cd site && python3 -m http.server 5173
 Open http://localhost:5173
 
-## Edit content (all in index.html)
+## Pages
+- `index.html` — simple landing page (inline CSS/JS). Edit its `<details>` sections directly.
+- `fun/index.html` — the F1-themed site, linked from the landing page's "If you want to have some fun" card.
+
+## Edit content of the fun site (all in fun/index.html)
 - **Projects** — the `<article class="proj">` cards in the WORK section. What each card's popup shows lives in the matching `<template id="pm-…">` right after that section (gallery images, text, links). Preview images are in `assets/img/work/`.
 - **Skills** — the `<article class="skill">` blocks.
 - **Beyond** — the `<li>` items in `#beyondList`.
 - **Stats** — the `data-count` numbers in the About section.
 - **Links** — search for `https://github.com` and `https://linkedin.com` and swap in your profile URLs.
 - **Photo** — the hero uses `assets/img/ayushman-cutout.webp` (background removed). `ayushman-md.jpg` is only the link-preview image.
-- **Colours** — `--papaya` at the top of `css/style.css`.
+- **Colours** — `--papaya` at the top of `css/style.css`. (The landing page has its own tokens in its `<style>` block.)
 
 ## Contact form
 By default it opens the visitor's mail app with the message pre-filled.

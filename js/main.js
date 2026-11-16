@@ -633,7 +633,7 @@
       obs.disconnect();
     }, { threshold: 0.25 }).observe(pitwall);
   };
-  fetch('data/contributions.json', { cache: 'no-cache' })
+  fetch('../data/contributions.json', { cache: 'no-cache' })
     .then(r => (r.ok ? r.json() : Promise.reject()))
     .then(renderContributions)
     .catch(() => {});
