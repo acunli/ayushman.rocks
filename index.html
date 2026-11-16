@@ -102,15 +102,17 @@
   /* ---------- intro ---------- */
   main.wrap { padding-top: 44px; padding-bottom: 64px; }
   .kicker { font-size: 12.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--dim); margin-bottom: 18px; }
-  .lead { font-size: 21px; line-height: 1.5; color: var(--text); letter-spacing: -.012em; }
-  .say a, .entry a, .outside a {
+  .lead { display: flex; align-items: center; gap: 20px; font-size: 21px; line-height: 1.5; color: var(--text); letter-spacing: -.012em; }
+  .lead p { text-wrap: balance; }
+  .lead__mama { width: 190px; height: auto; flex: none; }
+  .say a, .entry a, .skills a {
     color: var(--text);
     text-decoration: underline;
     text-decoration-color: var(--link-line);
     text-decoration-thickness: 1.5px;
     text-underline-offset: 3px;
   }
-  .say a:hover, .entry a:hover, .outside a:hover { text-decoration-thickness: 3px; }
+  .say a:hover, .entry a:hover, .skills a:hover { text-decoration-thickness: 3px; }
   /* ---------- sections: one sentence in my voice; its list drops down on hover (tap on touch) ---------- */
   .secs { margin-top: 34px; }
   .sec + .sec { margin-top: 10px; }
@@ -157,14 +159,12 @@
   .entry__note { margin-top: 3px; font-size: 14.5px; }
   .entry__stack { margin-top: 5px; font-size: 12px; color: var(--dim); }
   .entry__links { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13.5px; }
-  .entry a[target="_blank"]::after, .outside a[target="_blank"]::after { content: " ↗"; font-size: .85em; }
+  .entry a[target="_blank"]::after, .skills a[target="_blank"]::after { content: " ↗"; font-size: .85em; }
 
   .skills { display: grid; grid-template-columns: 9.5em 1fr; gap: 10px 16px; margin: 0; }
   .skills dt { font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--dim); padding-top: 2px; }
   .skills dd { margin: 0; font-size: 14.5px; }
 
-  .outside { font-size: 14.5px; }
-  .outside + .outside { margin-top: 10px; }
 
   /* ---------- contact links ---------- */
   .links { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -213,7 +213,8 @@
   @media (max-width: 520px) {
     main.wrap { padding-top: 30px; }
     .kicker { font-size: 11px; letter-spacing: .06em; }
-    .lead { font-size: 19px; }
+    .lead { font-size: 19px; gap: 16px; }
+    .lead__mama { width: 128px; }
     .list { padding-left: 14px; }
     .top__right { gap: 12px; }
     .top__fun { font-size: 11px; }
@@ -244,7 +245,10 @@
 
 <main class="wrap">
   <p class="kicker mono">AI/ML Engineering · Business AI Systems @ NUS</p>
-  <p class="lead">My mom said I'm the “tech guy”. So if you don't trust me, you've got to trust my mom.</p>
+  <div class="lead">
+    <p>My mom said I'm the “tech guy”.</p>
+    <img class="lead__mama" src="assets/img/mama.webp" width="606" height="455" alt="Poster that says “Always listen to your mama”">
+  </div>
 
   <div class="secs">
   <section class="sec" id="projects">
@@ -279,7 +283,7 @@
   </section>
 
   <section class="sec" id="society">
-    <button class="say" type="button" aria-expanded="false">Got into this super cool society with super cool people (does that mean I'm cool?! Ah well, if you say so 😛):<i class="say__chev" aria-hidden="true"></i></button>
+    <button class="say" type="button" aria-expanded="false">Got into this super cool society with super cool people (does that mean I'm cool?! 😛):<i class="say__chev" aria-hidden="true"></i></button>
     <div class="fold"><div class="fold__in">
       <ul class="list">
         <li class="entry">
@@ -385,8 +389,14 @@
     <button class="say" type="button" aria-expanded="false">I actually play the drums, in case you want some workplace music :)<i class="say__chev" aria-hidden="true"></i></button>
     <div class="fold"><div class="fold__in">
       <div class="list">
-        <p class="outside">When I'm not drumming, I'm playing chess (peak 1500 rapid on <a href="https://www.chess.com/member/Ay7u" target="_blank" rel="noopener">chess.com</a>, and a member of the NUS iChess Club), writing about anything and everything on <a href="https://medium.com/@ayushman.chaudhuri" target="_blank" rel="noopener">Medium</a>, or arguing my side at a Model UN or debate. I've done a ton of those.</p>
-        <p class="outside">Diehard Chelsea fan, McLaren all the way in F1 (hence the orange), and I play cricket, badminton, tennis and table tennis.</p>
+        <dl class="skills">
+          <dt class="mono">Chess</dt><dd>1500 rapid peak on <a href="https://www.chess.com/member/Ay7u" target="_blank" rel="noopener">chess.com</a>, NUS iChess Club</dd>
+          <dt class="mono">Football</dt><dd>Diehard Chelsea fan</dd>
+          <dt class="mono">F1</dt><dd>McLaren (hence the orange)</dd>
+          <dt class="mono">Also play</dt><dd>Cricket, badminton, tennis, table tennis</dd>
+          <dt class="mono">Writing</dt><dd>Anything and everything, on <a href="https://medium.com/@ayushman.chaudhuri" target="_blank" rel="noopener">Medium</a></dd>
+          <dt class="mono">Talking</dt><dd>A ton of MUNs and debates</dd>
+        </dl>
       </div>
     </div></div>
   </section>
